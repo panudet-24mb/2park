@@ -109,6 +109,7 @@ class Event(models.Model):
          default=uuid.uuid4, editable=False
     )
     event_license_plate = models.CharField(max_length=100, blank=True, null=True )
+    event_picture = models.CharField(max_length=250, blank=True, null=True )
     timestamp = models.DateTimeField( default=datetime.datetime.now)
     class Meta :
         db_table = "event"
