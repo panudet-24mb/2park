@@ -83,7 +83,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': '2park',
+        'NAME': 'park_2',
 
         'USER': 'postgres',
 
