@@ -24,9 +24,9 @@ async def send_event(request , room_id):
     uuid_entry = str( uuid.uuid4() ) 
     dt = datetime.datetime.now(tz)
     insert_statement = await conn.execute_query(
-        " insert into event( event_name ,event_public_id , timestamp ,event_license_plate , event_picture ) "
-        " VALUES ( $1 , $2 , $3 ,$4 ,$5 ) "  , 
-        [params['event_name'] , uuid_entry , dt ,params['event_license_plate'] ,params['event_picture']]
+        " insert into event( event_name ,event_public_id , timestamp ,event_license_plate , event_picture , event_device_uuid ) "
+        " VALUES ( $1 , $2 , $3 ,$4 ,$5,$6) "  , 
+        [params['event_name'] , uuid_entry , dt ,params['event_license_plate'] ,params['event_picture'] , params['event_device_uuid']]
       )
   return response.json(c)
 
@@ -35,7 +35,7 @@ async def send_event(request , room_id):
 async def send_event(request , room_id):
   async with in_transaction() as conn:
     rv = await conn.execute_query_dict(
-        "select * from event order by event_id DESC"
+        "select * from event as e left join device as d on d.device_uuid = e.event_device_uuid left join device_model as dm on dm.device_model_id = d.device_model_id left join device_type as dt on dt.device_type_id = d.device_type_id order by event_id DESC"
       )
   json_data = json.dumps(rv , cls=UUIDEncoder)
   return response.json(json.loads(json_data))
