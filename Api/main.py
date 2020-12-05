@@ -49,7 +49,7 @@ async def init_socket(request, ws , user_public_id):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0" , port=8999 ,debug=True, workers=2  ,protocol=WebSocketProtocol )
-    # context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
-    # context.load_cert_chain("/home/ubuntu/cert.pem", keyfile="/home/ubuntu/key.pem")
-    # app.run(host="0.0.0.0" , port=8999 ,debug=True,workers=2,protocol=WebSocketProtocol , ssl=context )
+    # app.run(host="0.0.0.0" , port=8999 ,debug=True, workers=2  ,protocol=WebSocketProtocol )
+    context = ssl.create_default_context(purpose=ssl.Purpose.CLIENT_AUTH)
+    context.load_cert_chain("/home/ubuntu/cert.pem", keyfile="/home/ubuntu/key.pem")
+    app.run(host="0.0.0.0" , port=8999 ,debug=True,workers=2,protocol=WebSocketProtocol , ssl=context )
