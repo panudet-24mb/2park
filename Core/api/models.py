@@ -84,20 +84,20 @@ class Car(models.Model):
         db_table = "car"
     def __str__(self):
         return str(self.car_license_plate)
-class User(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    user_firstname = models.CharField(max_length=100, blank=True, null=True )
-    user_lastname = models.CharField(max_length=100, blank=True, null=True )
-    user_mobile = models.CharField(max_length=100, blank=True, null=True )
-    user_citizen_id = models.CharField(max_length=100, blank=True, null=True )
+class Users(models.Model):
+    users_id = models.AutoField(primary_key=True)
+    users_firstname = models.CharField(max_length=100, blank=True, null=True )
+    users_lastname = models.CharField(max_length=100, blank=True, null=True )
+    users_mobile = models.CharField(max_length=100, blank=True, null=True )
+    users_citizen_id = models.CharField(max_length=100, blank=True, null=True )
     class Meta:
-        db_table = "user"
+        db_table = "users"
     def __str__(self):
         return str(self.user_firstname)
-class User_has_car (models.Model):
-    user_has_car_id = models.AutoField(primary_key=True)
+class Users_has_car (models.Model):
+    users_has_car_id = models.AutoField(primary_key=True)
     car = models.ForeignKey(Car, models.CASCADE)
-    user = models.ForeignKey(User, models.CASCADE)
+    users = models.ForeignKey(Users, models.CASCADE)
     class Meta:
         db_table = "user_has_car"
     def __str__(self):

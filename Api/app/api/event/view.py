@@ -41,3 +41,17 @@ async def send_event(request , room_id):
   return response.json(json.loads(json_data))
 
 
+
+@event_service.route("/event_car/<license_plate>" , methods=['GET'])
+async def get_car(request , license_plate):
+  async with in_transaction() as conn:
+    rv = await conn.execute_query_dict(
+        " select * from car as c left join car_brand as cb on cb.car_brand_id = c.car_brand_id "
+        " left join car_brand as cm on cm.car_brand_id = c.car_brand_id "
+        " left join car_type as ct on ct.car_type_id = c.car_type_id "
+        " left join user_has_car as uhc on c.car_id = uhc.car_id left join users as us on us.users_id = uhc.users_id where c.car_license_plate = $1 ",
+        [license_plate , ]
+      )
+  json_data = json.dumps(rv , cls=UUIDEncoder)
+  return response.json(json.loads(json_data))
+
