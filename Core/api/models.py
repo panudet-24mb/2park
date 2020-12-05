@@ -93,7 +93,7 @@ class Users(models.Model):
     class Meta:
         db_table = "users"
     def __str__(self):
-        return str(self.user_firstname)
+        return str(self.users_firstname)
 class Users_has_car (models.Model):
     users_has_car_id = models.AutoField(primary_key=True)
     car = models.ForeignKey(Car, models.CASCADE)
