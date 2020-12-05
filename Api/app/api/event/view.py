@@ -55,3 +55,17 @@ async def get_car(request , license_plate):
   json_data = json.dumps(rv , cls=UUIDEncoder)
   return response.json(json.loads(json_data))
 
+
+
+
+@event_service.route("/camera_check/<camera_public_id>" , methods=['GET'])
+async def get_car(request , camera_public_id):
+  async with in_transaction() as conn:
+    rv = await conn.execute_query_dict(
+       " select * from device as d left join device_model as dm on dm.device_model_id = d.device_model_id left join device_type as dt on dt.device_type_id = d.device_type_id where device_uuid = $1 "
+       ,
+        [camera_public_id , ]
+      )
+  json_data = json.dumps(rv , cls=UUIDEncoder)
+  return response.json(json.loads(json_data))
+
