@@ -25,7 +25,7 @@ SECRET_KEY = '$j_ncyl*#3w%w%m0c5n)=b@g(m!-oosf-81#dnfmbulmyy6ckc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://www.2fast.online:8998/' , 'www.2fast.online']
 
 
 # Application definition
