@@ -101,7 +101,7 @@ class Users_has_car (models.Model):
     class Meta:
         db_table = "user_has_car"
     def __str__(self):
-        return str(self.user_has_car_id)
+        return str(self.users_has_car_id)
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
     event_name = models.CharField(max_length=100, blank=True, null=True )
